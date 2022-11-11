@@ -13,6 +13,8 @@ npm install react-use-clock
 ## How to use
 
 ```jsx
+import { useClock } from 'react-use-clock'
+
 const MyClockComponent = () => {
 	const clock = useClock()
 
