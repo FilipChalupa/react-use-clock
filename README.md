@@ -2,6 +2,8 @@
 
 Simplified access to current hours, minutes, seconds.
 
+[![screencast](https://raw.githubusercontent.com/FilipChalupa/react-use-clock/HEAD/screencast.gif)](https://react-use-clock.netlify.app)
+
 ## Installation
 
 ```bash
