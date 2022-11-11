@@ -1,0 +1,1 @@
+export { useClock } from './useClock';

@@ -1,0 +1,63 @@
+{
+	"name": "react-use-clock",
+	"version": "0.0.0",
+	"description": "React clock hook.",
+	"main": "./dist/index.js",
+	"module": "./dist/index.es.js",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"start": "rollup --configPlugin typescript -c -w",
+		"dev": "npm start",
+		"build": "rollup --configPlugin typescript -c",
+		"prepare": "npm run build",
+		"storybook": "start-storybook -p 6006",
+		"build-storybook": "npm run build && build-storybook"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/FilipChalupa/react-use-clock.git"
+	},
+	"keywords": [
+		"clock",
+		"hook",
+		"time",
+		"typescript",
+		"react"
+	],
+	"author": {
+		"name": "Filip Chalupa",
+		"email": "chalupa.filip@gmail.com",
+		"url": "https://www.npmjs.com/~onset"
+	},
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/core": "^7.20.2",
+		"@rollup/plugin-commonjs": "^23.0.2",
+		"@rollup/plugin-node-resolve": "^15.0.1",
+		"@rollup/plugin-typescript": "^9.0.2",
+		"@storybook/addon-actions": "^6.5.13",
+		"@storybook/addon-essentials": "^6.5.13",
+		"@storybook/addon-interactions": "^6.5.13",
+		"@storybook/addon-links": "^6.5.13",
+		"@storybook/builder-webpack5": "^6.5.13",
+		"@storybook/manager-webpack5": "^6.5.13",
+		"@storybook/react": "^6.5.13",
+		"@storybook/testing-library": "^0.0.13",
+		"@types/react": "^18.0.25",
+		"babel-loader": "^9.1.0",
+		"prettier": "^2.7.1",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"rollup": "^3.2.5",
+		"rollup-plugin-peer-deps-external": "^2.2.4",
+		"rollup-plugin-typescript2": "^0.34.1",
+		"typescript": "^4.8.4"
+	},
+	"peerDependencies": {
+		"react": "17 | 18"
+	},
+	"files": [
+		"/dist/"
+	],
+	"dependencies": {}
+}
