@@ -1,3 +1,73 @@
 body {
 	font-family: sans-serif;
 }
+
+.clock {
+	aspect-ratio: 1;
+	position: relative;
+	border-radius: 50%;
+	border: 1px solid;
+	max-width: 25rem;
+}
+
+.clock::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	aspect-ratio: 1;
+	width: 5%;
+	background-color: currentColor;
+	border-radius: 50%;
+	transform: translate(-50%, -50%)
+}
+
+.clock__hours,
+.clock__minutes,
+.clock__seconds {
+	position: absolute;
+	top: 0;
+	width: 0;
+	left: 50%;
+	height: 50%;
+	transform-origin: 50% 100%;
+	display: grid;
+	align-items: end;
+	justify-content: center;
+}
+
+.clock__hours {
+	transform: rotate(calc(360deg / 12 * var(--hours)))
+}
+
+.clock__minutes {
+	transform: rotate(calc(360deg / 60 * var(--minutes)))
+}
+
+.clock__seconds {
+	transform: rotate(calc(360deg / 60 * var(--seconds)))
+}
+
+
+.clock__hours::before,
+.clock__minutes::before,
+.clock__seconds::before {
+	content: '';
+	background-color: currentColor;
+}
+
+.clock__hours::before {
+	width: 6px;
+	height: 50%;
+}
+
+.clock__minutes::before {
+	width: 6px;
+	height: 90%;
+}
+
+.clock__seconds::before {
+	background-color: #ff0000;
+	height: 96%;
+	width: 2px;
+}

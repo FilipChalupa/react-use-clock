@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { CSSProperties, FunctionComponent } from 'react'
 import { useClock } from '../useClock'
 import './global.css'
 
@@ -14,6 +14,20 @@ export const Example: FunctionComponent = () => {
 		<>
 			<h1>Time is:</h1>
 			<p>{clockHHMMSS}</p>
+			<div
+				className="clock"
+				style={
+					{
+						'--hours': `${clock.hours}`,
+						'--minutes': `${clock.minutes}`,
+						'--seconds': `${clock.seconds}`,
+					} as CSSProperties
+				}
+			>
+				<span className="clock__hours" />
+				<span className="clock__minutes" />
+				<span className="clock__seconds" />
+			</div>
 		</>
 	)
 }
