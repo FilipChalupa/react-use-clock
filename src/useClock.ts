@@ -7,7 +7,7 @@ export const useClock = (
 		seconds: 0,
 		year: 0,
 		month: 0,
-		day: 0, // @TODO: rename to date
+		day: 0,
 	},
 	getDate = () => new Date(),
 ) => {
