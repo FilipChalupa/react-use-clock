@@ -11,13 +11,16 @@ export const Example: FunctionComponent = () => {
 		.padStart(2, '0')}:${clock.seconds.toString().padStart(2, '0')}`
 
 	const dateDMYY = `${clock.day}. ${clock.month}. ${clock.year}`
+	const intlDateTime = clock.date.toLocaleTimeString('en', {
+		day: 'numeric',
+		month: 'long',
+		year: 'numeric',
+	})
 
 	return (
 		<>
 			<h1>Time is:</h1>
 			<p>{clockHHMMSS}</p>
-			<h2>Date is:</h2>
-			<p>{dateDMYY}</p>
 			<div
 				className="clock"
 				style={
@@ -32,6 +35,10 @@ export const Example: FunctionComponent = () => {
 				<span className="clock__minutes" />
 				<span className="clock__seconds" />
 			</div>
+			<h2>Date is:</h2>
+			<p>{dateDMYY}</p>
+			<h2>Intl date:</h2>
+			<p>{intlDateTime}</p>
 		</>
 	)
 }

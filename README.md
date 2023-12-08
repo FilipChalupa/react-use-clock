@@ -20,17 +20,30 @@ const MyClockComponent = () => {
 
 	return (
 		<div>
-			Time is:{' '}
-			<strong>
-				<span>
+			<p>
+				Time is:{' '}
+				<strong>
 					{clock.hours.toString().padStart(2, '0')}:
 					{clock.minutes.toString().padStart(2, '0')}:
 					{clock.seconds.toString().padStart(2, '0')}
-				</span>{' '}
-				<span>
+				</strong>
+			</p>
+			<p>
+				Date is:{' '}
+				<strong>
 					{clock.day}. {clock.month}. {clock.year}
-				</span>
-			</strong>
+				</strong>
+			</p>
+			<p>
+				Using formatter:{' '}
+				<strong>
+					{clock.date.toLocaleTimeString('en', {
+						day: 'numeric',
+						month: 'long',
+						year: 'numeric',
+					})}
+				</strong>
+			</p>
 			<div
 				style={{
 					'--hours': `${clock.hours}`,

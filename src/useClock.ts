@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 export const useClock = (
 	initialValue = {
@@ -40,5 +40,18 @@ export const useClock = (
 		}
 	}, [])
 
-	return clock
+	return useMemo(
+		() => ({
+			...clock,
+			date: new Date(
+				clock.year,
+				clock.month - 1,
+				clock.day,
+				clock.hours,
+				clock.minutes,
+				clock.seconds,
+			),
+		}),
+		[clock],
+	)
 }
