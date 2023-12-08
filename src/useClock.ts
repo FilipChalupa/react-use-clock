@@ -5,6 +5,9 @@ export const useClock = (
 		hours: 0,
 		minutes: 0,
 		seconds: 0,
+		year: 0,
+		month: 0,
+		day: 0,
 	},
 	getDate = () => new Date(),
 ) => {
@@ -22,6 +25,9 @@ export const useClock = (
 				hours: now.getHours(),
 				minutes: now.getMinutes(),
 				seconds: now.getSeconds(),
+				year: now.getFullYear(),
+				month: now.getMonth() + 1,
+				day: now.getDate(),
 				isInitialized: true,
 			})
 			const nextTick = Math.max(1, 1000 - (now.getTime() % 1000))

@@ -22,9 +22,14 @@ const MyClockComponent = () => {
 		<div>
 			Time is:{' '}
 			<strong>
-				{clock.hours.toString().padStart(2, '0')}:
-				{clock.minutes.toString().padStart(2, '0')}:
-				{clock.seconds.toString().padStart(2, '0')}
+				<span>
+					{clock.hours.toString().padStart(2, '0')}:
+					{clock.minutes.toString().padStart(2, '0')}:
+					{clock.seconds.toString().padStart(2, '0')}
+				</span>{' '}
+				<span>
+					{clock.day}. {clock.month}. {clock.year}
+				</span>
 			</strong>
 			<div
 				style={{
