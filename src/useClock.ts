@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useRef, useSyncExternalStore } from 'react'
 
 export const useClock = (
 	initialValue = {
@@ -7,38 +7,45 @@ export const useClock = (
 		seconds: 0,
 		year: 0,
 		month: 0,
-		day: 0,
+		day: 0, // @TODO: rename to date
 	},
 	getDate = () => new Date(),
 ) => {
-	const [clock, setClock] = useState(() => ({
-		...initialValue,
-		isInitialized: false,
-	}))
-
-	useEffect(() => {
+	const nowRef = useRef(getDate())
+	const lastSnapshotRef = useRef<null | typeof initialValue>(null)
+	const subscribe = useCallback((onStoreChange: () => void) => {
 		let timer: ReturnType<typeof setTimeout>
-
 		const loop = () => {
-			const now = getDate()
-			setClock({
-				hours: now.getHours(),
-				minutes: now.getMinutes(),
-				seconds: now.getSeconds(),
-				year: now.getFullYear(),
-				month: now.getMonth() + 1,
-				day: now.getDate(),
-				isInitialized: true,
-			})
-			const nextTick = Math.max(1, 1000 - (now.getTime() % 1000))
+			nowRef.current = getDate()
+			const nextTick = Math.max(1, 1000 - (nowRef.current.getTime() % 1000))
+			lastSnapshotRef.current = null // Request recalculation
+			onStoreChange()
 			timer = setTimeout(loop, nextTick)
 		}
 		loop()
-
 		return () => {
 			clearTimeout(timer)
 		}
 	}, [])
+	const getSnapshot = useCallback(() => {
+		if (lastSnapshotRef.current === null) {
+			lastSnapshotRef.current = {
+				hours: nowRef.current.getHours(),
+				minutes: nowRef.current.getMinutes(),
+				seconds: nowRef.current.getSeconds(),
+				year: nowRef.current.getFullYear(),
+				month: nowRef.current.getMonth() + 1,
+				day: nowRef.current.getDate(),
+			}
+		}
+		return lastSnapshotRef.current
+	}, [])
+	const getServerSnapshot = useCallback(() => initialValue, [initialValue])
+	const clock = useSyncExternalStore<typeof initialValue>(
+		subscribe,
+		getSnapshot,
+		getServerSnapshot,
+	)
 
 	return useMemo(
 		() => ({
