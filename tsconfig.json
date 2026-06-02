@@ -2,12 +2,13 @@
 	"compilerOptions": {
 		"declaration": true,
 		"declarationDir": "dist",
+		"rootDir": "src",
 		"module": "esnext",
 		"target": "es2020",
 		"lib": ["es2020", "dom"],
 		"sourceMap": true,
 		"jsx": "react",
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"allowSyntheticDefaultImports": true,
 		"strictNullChecks": true,
 		"esModuleInterop": true
