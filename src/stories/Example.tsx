@@ -24,6 +24,7 @@ export const Example: FunctionComponent<{
 		<>
 			<h1>Time is:</h1>
 			<p>{clockHHMMSS}</p>
+			<p>Date is: {dateDMYY}</p>
 			<p>
 				<small>Granularity: {granularity}</small>
 			</p>
@@ -42,8 +43,6 @@ export const Example: FunctionComponent<{
 				<span className="clock__minutes" />
 				<span className="clock__seconds" />
 			</div>
-			<h2>Date is:</h2>
-			<p>{dateDMYY}</p>
 			<h2>Intl date:</h2>
 			<p>{intlDateTime}</p>
 		</>
