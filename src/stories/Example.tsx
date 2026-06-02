@@ -23,8 +23,12 @@ export const Example: FunctionComponent<{
 	return (
 		<>
 			<h1>Time is:</h1>
-			<p>{clockHHMMSS}</p>
-			<p>Date is: {dateDMYY}</p>
+			<p>
+				Time is: <output>{clockHHMMSS}</output>
+			</p>
+			<p>
+				Date is: <output>{dateDMYY}</output>
+			</p>
 			<p>
 				<small>Granularity: {granularity}</small>
 			</p>
