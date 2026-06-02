@@ -11,5 +11,13 @@ export default {
 		sourcemap: true,
 	},
 	external: ['react'],
-	plugins: [peerDepsExternal(), resolve(), commonjs(), typescript()],
+	plugins: [
+		peerDepsExternal(),
+		resolve(),
+		commonjs(),
+		typescript({
+			// Keep stories and tests out of the published type declarations.
+			exclude: ['**/stories/**', '**/*.test.ts', '**/*.test.tsx'],
+		}),
+	],
 }
