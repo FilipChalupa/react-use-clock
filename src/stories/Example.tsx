@@ -1,9 +1,11 @@
 import React, { CSSProperties, FunctionComponent } from 'react'
-import { useClock } from '../useClock'
+import { ClockGranularity, useClock } from '../useClock'
 import './global.css'
 
-export const Example: FunctionComponent = () => {
-	const clock = useClock()
+export const Example: FunctionComponent<{
+	granularity?: ClockGranularity
+}> = ({ granularity = 'second' }) => {
+	const clock = useClock({ granularity })
 	const clockHHMMSS = `${clock.hours
 		.toString()
 		.padStart(2, '0')}:${clock.minutes
@@ -21,6 +23,9 @@ export const Example: FunctionComponent = () => {
 		<>
 			<h1>Time is:</h1>
 			<p>{clockHHMMSS}</p>
+			<p>
+				<small>Granularity: {granularity}</small>
+			</p>
 			<div
 				className="clock"
 				style={
