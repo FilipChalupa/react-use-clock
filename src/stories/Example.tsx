@@ -1,5 +1,6 @@
 import React, { CSSProperties, FunctionComponent } from 'react'
 import { ClockGranularity, useClock } from '../useClock'
+import { RealtimeClock } from './RealtimeClock'
 import './global.css'
 
 export const Example: FunctionComponent<{
@@ -26,6 +27,7 @@ export const Example: FunctionComponent<{
 			<p>
 				<small>Granularity: {granularity}</small>
 			</p>
+			<RealtimeClock />
 			<div
 				className="clock"
 				style={
