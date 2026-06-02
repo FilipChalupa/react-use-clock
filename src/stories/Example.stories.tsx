@@ -1,17 +1,21 @@
-import React from 'react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Example } from './Example'
 
-export default {
+const meta: Meta<typeof Example> = {
 	title: 'Example',
 	component: Example,
 }
 
-export const Demo = () => <Example />
+export default meta
 
-export const EverySecond = () => <Example granularity="second" />
+type Story = StoryObj<typeof Example>
 
-export const EveryMinute = () => <Example granularity="minute" />
+export const Demo: Story = {}
 
-export const EveryHour = () => <Example granularity="hour" />
+export const EverySecond: Story = { args: { granularity: 'second' } }
 
-export const EveryDay = () => <Example granularity="day" />
+export const EveryMinute: Story = { args: { granularity: 'minute' } }
+
+export const EveryHour: Story = { args: { granularity: 'hour' } }
+
+export const EveryDay: Story = { args: { granularity: 'day' } }

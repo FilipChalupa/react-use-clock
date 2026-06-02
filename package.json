@@ -2,12 +2,13 @@
 	"name": "react-use-clock",
 	"version": "1.1.1",
 	"description": "React clock hook.",
-	"main": "./dist/index.mjs",
+	"type": "module",
+	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
-			"import": "./dist/index.mjs"
+			"import": "./dist/index.js"
 		}
 	},
 	"scripts": {
@@ -15,8 +16,8 @@
 		"dev": "npm start",
 		"build": "rollup --configPlugin typescript -c",
 		"prepare": "npm run build",
-		"storybook": "start-storybook -p 6006",
-		"build-storybook": "npm run build && build-storybook"
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build"
 	},
 	"repository": {
 		"type": "git",
@@ -36,28 +37,23 @@
 	},
 	"license": "ISC",
 	"devDependencies": {
-		"@babel/core": "^7.20.2",
 		"@rollup/plugin-commonjs": "^23.0.2",
 		"@rollup/plugin-node-resolve": "^15.0.1",
 		"@rollup/plugin-typescript": "^12.3.0",
-		"@storybook/addon-actions": "^6.5.13",
-		"@storybook/addon-essentials": "^6.5.13",
-		"@storybook/addon-interactions": "^6.5.13",
-		"@storybook/addon-links": "^6.5.13",
-		"@storybook/builder-webpack5": "^6.5.13",
-		"@storybook/manager-webpack5": "^6.5.13",
-		"@storybook/react": "^6.5.13",
-		"@storybook/testing-library": "^0.0.13",
+		"@storybook/addon-docs": "^10.4.1",
+		"@storybook/react-vite": "^10.4.1",
 		"@types/react": "^18.0.25",
 		"@types/rollup-plugin-peer-deps-external": "^2.2.6",
-		"babel-loader": "^9.1.0",
+		"@vitejs/plugin-react": "^6.0.2",
 		"prettier": "^2.7.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"rollup": "3.10",
 		"rollup-plugin-peer-deps-external": "^2.2.4",
 		"rollup-plugin-typescript2": "^0.37.0",
-		"typescript": "^6.0.3"
+		"storybook": "^10.4.1",
+		"typescript": "^6.0.3",
+		"vite": "^8.0.16"
 	},
 	"peerDependencies": {
 		"react": "18 || 19"
