@@ -58,6 +58,32 @@ const MyClockComponent = () => {
 
 Create your own wrapper component. You can get inspired by [Example here](src/stories/Example.tsx) and [Storybook here](https://react-use-clock.netlify.app).
 
+## Granularity
+
+By default the clock ticks every second. If you only display minutes, hours or
+the date, pass a coarser `granularity` to avoid unnecessary re-renders – the
+component then re-renders only once per chosen unit and the lower fields are
+zeroed.
+
+```jsx
+// Re-renders once per minute, seconds are always 0.
+const clock = useClock({ granularity: 'minute' })
+```
+
+Supported values: `'second'` (default), `'minute'`, `'hour'`, `'day'`.
+
+```ts
+useClock(options?: {
+	granularity?: 'second' | 'minute' | 'hour' | 'day'
+	initialValue?: ClockSnapshot // server snapshot / first render
+	getDate?: () => Date // custom time source, e.g. for testing
+})
+```
+
+> **Migrating from 1.x:** the hook now takes a single options object instead of
+> positional arguments. Replace `useClock(initialValue, getDate)` with
+> `useClock({ initialValue, getDate })`.
+
 ## Development
 
 Run `npm start` and `npm run storybook` parallelly.
