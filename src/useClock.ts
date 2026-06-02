@@ -95,7 +95,10 @@ export const useClock = ({
 	const getDateRef = useRef(getDate)
 	getDateRef.current = getDate
 	const nowRef = useRef(getDate())
-	const lastSnapshotRef = useRef<ClockSnapshot | null>(null)
+	const lastSnapshotRef = useRef<{
+		granularity: ClockGranularity
+		value: ClockSnapshot
+	} | null>(null)
 	const subscribe = useCallback(
 		(onStoreChange: () => void) => {
 			let timer: ReturnType<typeof setTimeout>
@@ -114,13 +117,19 @@ export const useClock = ({
 		[granularity],
 	)
 	const getSnapshot = useCallback(() => {
-		if (lastSnapshotRef.current === null) {
-			lastSnapshotRef.current = truncate(
-				snapshotFromDate(nowRef.current),
+		// Recompute when there is no cached value (a tick requested recalculation)
+		// or when the granularity changed, so switching granularity immediately
+		// emits a freshly truncated value instead of briefly keeping the old one.
+		if (
+			lastSnapshotRef.current === null ||
+			lastSnapshotRef.current.granularity !== granularity
+		) {
+			lastSnapshotRef.current = {
 				granularity,
-			)
+				value: truncate(snapshotFromDate(nowRef.current), granularity),
+			}
 		}
-		return lastSnapshotRef.current
+		return lastSnapshotRef.current.value
 	}, [granularity])
 	const serverSnapshot = useMemo(
 		() => truncate(initialValue, granularity),
